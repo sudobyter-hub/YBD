@@ -3,7 +3,7 @@
 for ((;;))
 do 
 
-	printf "To exit press CTRL + C \n"
+	printf '\e[1;34m%-6s\e[m' " To exit press CTRL + C "
 
 #Custome location answer 
 
@@ -14,7 +14,7 @@ while (( cl ==  0 ))
 
 do
 
-printf  "Custom location ? \n 1)Yes \n 2)No \n Only Numbers! \n Write your input:  "
+printf  "\n Custom location ? \n 1)Yes \n 2)No \n Only Numbers! \n Write your input:  "
 
 read cl #means custom location
 
@@ -22,11 +22,11 @@ read cl #means custom location
 
 if [ -z "${cl}" ];
 then 
-	printf "Please doni't leave it empty!\n"
+	printf "\n Please doni't leave it empty!\n"
 
 elif [$cl -ge 3 ]
 then 
-	printf "Please stick to the options"
+	printf "\n Please stick to the options"
 else 
 	let $cl 
 fi
