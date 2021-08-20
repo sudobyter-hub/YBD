@@ -1,55 +1,125 @@
 #! /bin/bash 
 
+#colors 
+
+red=$'\e[1;31m'
+grn=$'\e[1;32m'
+yel=$'\e[1;33m'
+blu=$'\e[1;34m'
+mag=$'\e[1;35m'
+cyn=$'\e[1;36m'
+end=$'\e[0m'
+
+
 for ((;;))
 do 
+	printf "${cyn} 
+        ___.        .___
+ ___.__.\_ |__    __| _/
+<   |  | | __ \  / __ | 
+ \___  | | \_\ \/ /_/ | 
+ / ____| |___  /\____ | 
+ \/          \/      \/ 
 
-	printf '\e[1;34m%-6s\e[m' " To exit press CTRL + C "
+			${end} \n"
 
-#Custome location answer 
+
+
+		printf "${cyn} WELCOME ${USER} , Youtube downloader will help you to download anything from youtube and to avoid ads \n ${end}"
+		
+		
+		
+		
+			printf '\e[1;34m%-6s\e[m' " To exit press CTRL + C "
+
+#Custom location answer validating loop if the answer is wrong will start again and not going to the next   
 
 cl=0
-three=3
+
 
 while (( cl ==  0 ))
 
 do
 
-printf  "\n Custom location ? \n 1)Yes \n 2)No \n Only Numbers! \n Write your input:  "
+printf  "\n ${red}Custom location ? \n 1)Yes \n 2)No \n Only Numbers! \n Write your input: ${end} "
 
 read cl #means custom location
 
-
+#if condition to make sure the input is right 
 
 if [ -z "${cl}" ];
-then 
-	printf "\n Please doni't leave it empty!\n"
 
-elif [$cl -ge 3 ]
 then 
-	printf "\n Please stick to the options"
-else 
+	printf "\n ${yel} Please doni't leave it empty! ${end}\n"
+
+elif [ $cl -ge 3 ];
+then 
+	printf "\n ${yel} Please stick to the options ${end}\n"
+	 
+	cl=0
+elif [ $cl -eq 2 ];
+then  
+	printf "\n NOTE IT WILL DOWNLOAD THIS CURRENT \n ${blu} ${PWD} ${end} \n" 	
+	
 	let $cl 
+
+elif [ $cl -eq 1 ]; 
+then 	
+	printf "\n ${grn} Write the path please: ${end}\n"
+	
+	read dpath #stands for dirctory path 
+
+	let $cl
+else 
+
+	printf "\n ${yel} Please stick to the options ${end}\n"
+
 fi
 
 done 
 
-echo "Is it playlist \n 1)Yes -y \n 2)No - n ?"
+### END FOR VALDATING CUSTOM LOCATION ###
+
+
+
+### Loop for the answer if input not vaild it will start again
+
+atp=0 
+
+while (( atp == 0 )) 
+
+do 
+
+printf  "\n ${red}Is it playlist \n 1)Yes \n 2)No  \n Only Numbers \n Write your input:  ${end}"
+
 read atp #means answer to playlist 
 
 #to make sure the input is valid
 
-if [ -z "$atp"]
+if [ -z "${atp}" ];
+
 then 
-	echo "Please don't leave the input blank"
-elif ["$atp" != "y" ] || ["$atp" != "n" ]
+	printf "\n ${yel}Please don't leave the input blank ${end} \n"
+
+elif [ $atp -ge 3 ] ;
+
 then 
-	echo "Please enter valid option"
+	printf "\n ${red}  Please enter valid option ${end} \n"
+	atp=0
 else 
-	echo "\n YAY ! we are about to download " 
+	
+	printf  "\n ${red}YAY ! we are about to download ${end} \n" 
+	
+	let $atp
 
 fi
 
-echo "What do you want to download from youtube?\n 1)Video \n 2)Audio \n Please write your input: "
+done 
+
+### ENDING FOR VALDATING ANSWER TO PLAYLIST ###
+
+printf  "\n ${red} What do you want to download from youtube?\n 1)Video \n 2)Audio \n Please write your input: ${end} \n "
+
 read input #the input is to know is it vidoe or audio 
 
 
@@ -58,8 +128,11 @@ case $input in
 			if [$atp == "y"] || [$atp == "yes"] 
 				then 
 					echo "write the url"
+					
 					read vup #means video url playlist
+					
 					#downloading youtube list 
+					
 					if (( $cl == "y" )) 
 						then 
 						youtube-dl -i -f mp4 --yes-playlist -o $cl "%(title)s.(%ext).s" $vup 
