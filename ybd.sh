@@ -1,28 +1,44 @@
-!# /bin/bash 
+#! /bin/bash 
 
+for ((;;))
+do 
 
-echo "Custom location ? \n 1)Yes - y \n 2)No - n"
+	printf "To exit press CTRL + C \n"
+
+#Custome location answer 
+
+cl=0
+three=3
+
+while (( cl ==  0 ))
+
+do
+
+printf  "Custom location ? \n 1)Yes \n 2)No \n Only Numbers! \n Write your input:  "
+
 read cl #means custom location
 
-#to make sure the input is valid
 
-if [-z "$cl" ] 
+
+if [ -z "${cl}" ];
 then 
-	echo "Please don't leave the input blank"
-elif ["$cl" != "y" ] || ["$cl" != "n"]
+	printf "Please doni't leave it empty!\n"
+
+elif [$cl -ge 3 ]
 then 
-	echo "Please enter vaild option"
+	printf "Please stick to the options"
 else 
-	echo "\n Ok let's go"
+	let $cl 
+fi
 
-fi 
+done 
 
 echo "Is it playlist \n 1)Yes -y \n 2)No - n ?"
 read atp #means answer to playlist 
 
 #to make sure the input is valid
 
-if [-z "$atp"]
+if [ -z "$atp"]
 then 
 	echo "Please don't leave the input blank"
 elif ["$atp" != "y" ] || ["$atp" != "n" ]
@@ -50,10 +66,10 @@ case $input in
 					fi
 				else 
 						youtube-dl -i -f mp4 --yes-playlist -o "%(title)s.(%ext).s" $vup 
-			fi 
+			fi
 					###	
 					#downloading only video 
-					elif [$atp == "n"] || [$atp == "no"]
+					if [ $atp == "n"] || [ $atp == "no"]
 						then 
 					echo "write the url"
 					read vu #means video url 
@@ -62,6 +78,7 @@ case $input in
 					youtube-dl -o -i -f mp4 -o $cl "%(title).s(%ext).s" $vu  
 					fi 
 					youtube-dl -o -i -f mp4 -o "%(title).s(%ext).s" $vu  
+			fi
 					###
 					;;
 
@@ -93,5 +110,6 @@ case $input in
 	
 		esac
 
-
+	echo "to stop it PRESS CTRL + C"
+done 
 
