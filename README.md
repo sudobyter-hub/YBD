@@ -25,9 +25,9 @@ Youtube Downloader to download audio immediately from youtube using the terminal
 
 :star_struck: Yay ! it will run now 
 
-simply copy the url from youtube for any video and just paste even if it's a play list !
+:clipboard: Simply copy the url from youtube for any video and just paste it , even if it's a playlist !
 
-Happy downlading 
+:grin: Happy downlading !
 
 
 # Contact 
