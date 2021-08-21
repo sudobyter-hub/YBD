@@ -18,7 +18,7 @@ Youtube Downloader to download audio immediately from youtube to make it much ea
 
 # Guide 
 
-- git clone `https://github.com/sudobyter-hub/YBD.git`
+- `git clone https://github.com/sudobyter-hub/YBD.git`
 
 - cd `YBD`
 
