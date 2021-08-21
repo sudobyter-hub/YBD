@@ -11,6 +11,10 @@ cyn=$'\e[1;36m'
 end=$'\e[0m'
 
 
+##vars 
+
+http=0 
+
 for ((;;))
 do 
 	printf "${cyn} 
@@ -64,11 +68,32 @@ then
 	let $cl 
 
 elif [ $cl -eq 1 ]; 
-then 	
+then 
+
+	pathlength=0 
+	
+	while (( pathlength == 0 )) 
+	
+	do 
+
 	printf "\n ${grn} Write the path please: ${end}\n"
 	
-	read dpath #stands for dirctory path 
+	read dpath #stands for dirctory path
 
+	let pathlength=`expr "$dpath" : '.*'` 
+
+	if [ $pathlength -eq 0 ];
+	then 
+		printf "\n ${yel} Please write  a path ${end}\n"
+		
+		dpath=0 
+	else 
+		let $dpath 
+
+	fi 
+
+
+		done 
 	let $cl
 else 
 
@@ -118,40 +143,48 @@ done
 
 ### ENDING FOR VALDATING ANSWER TO PLAYLIST ###
 
-printf  "\n ${red} What do you want to download from youtube?\n 1)Video \n 2)Audio \n Please write your input: ${end} \n "
+printf  "\n ${red} What do you want to download from youtube?\n 1)Video \n 2)Audio \n Please write your input: ${end}"
 
 read input #the input is to know is it vidoe or audio 
 
 
 case $input in 
 	1)
-			if [$atp == "y"] || [$atp == "yes"] 
-				then 
-					echo "write the url"
-					
+		for ((;;))	
+		do 		
+			printf "\n ${grn} write the url: ${end}"
 					read vup #means video url playlist
-					
+
+			if [$atp -eq 1 ] && [$cl -eq 1] ;
+				then 
+	
 					#downloading youtube list 
 					
-					if (( $cl == "y" )) 
-						then 
-						youtube-dl -i -f mp4 --yes-playlist -o $cl "%(title)s.(%ext).s" $vup 
-					fi
-				else 
+						youtube-dl -i -f mp4 --yes-playlist -o $dpath "%(title)s.(%ext).s" $vup 
+					
+			else 
 						youtube-dl -i -f mp4 --yes-playlist -o "%(title)s.(%ext).s" $vup 
-			fi
+					
+			fi 
+
+		done 
 					###	
 					#downloading only video 
-					if [ $atp == "n"] || [ $atp == "no"]
-						then 
-					echo "write the url"
+			if [$atp -eq 2] && [$cl -eq 1];		
+					 
+					printf  "write the url"
+					
 					read vu #means video url 
-					if (( $cl == "y" )) 
+					
 						then 
-					youtube-dl -o -i -f mp4 -o $cl "%(title).s(%ext).s" $vu  
-					fi 
+					youtube-dl -o -i -f mp4 -o $dpath "%(title).s(%ext).s" $vu  
+
+					
+				else 
+					
 					youtube-dl -o -i -f mp4 -o "%(title).s(%ext).s" $vu  
 			fi
+			
 					###
 					;;
 
