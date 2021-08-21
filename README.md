@@ -20,9 +20,9 @@ Youtube Downloader to download audio immediately from youtube to make it much ea
 
 - `git clone https://github.com/sudobyter-hub/YBD.git`
 
-- cd `YBD`
+- `cd YBD`
 
-- bash ybd.sh 
+- `bash ybd.sh` 
 
 :star_struck: Yay ! it will run now 
 
