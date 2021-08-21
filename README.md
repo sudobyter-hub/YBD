@@ -1,5 +1,6 @@
 # YBD
-Youtube Downloader to download audio immediately from youtube using the terminal for N00BS 
+Youtube Downloader to download audio immediately from youtube to make it much easier for begginers 
+
 
 
 # important Note  
